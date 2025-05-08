@@ -1,0 +1,113 @@
+Är gjort för more or less one-page-applications. For fin smooth transitioner mellan sidor.
+
+React erbjuder en bättre mental bild. Blir mindre komplext och risk för fel minskar.
+
+Om man använder js och vill lägga till HTML via en loop kan man göra:
+let listContent = "";
+for (const item of items) {
+    listContent += `<li>${item}</li>`
+}
+
+Attribut i React är samma som i JavaScript. T ex <img src=""> går att nå via javascript via img.src (om const img är en bild).
+
+React = Declarative UI Programming:
+-> Du programmerar inte logik för UI, du deklarerar ett nytt state och React sköter logiken för att uppdatera det åt dig.
+
+.jsx = Java Script Extension -> stöds inte webbläsare och behöver därför byggas.
+-> Det är bara byggprocessen som bryr sig om jsx, du kan tekniskt sätt skriva react i js med
+   jsx-kod innuti (vilket fortfarande inte går att köra i webbläsaren).
+
+En react-komponent är en funktion som måste följa två regler:
+1. Funktionens namn måste börja med stor bokstav. Flera ord i PascalCase.
+2. Return måste innehålla render-content.
+
+HTML-komponenter börjar med liten bokstav. Dvs <div> <header> osv är inbyggda komponenter och egentligen inte vanlig html.
+
+Formatera selection: CTRL+K CTRL+F. 
+Formatera dokument: Shift+Alt+F
+
+->Man kan välja vilken formater, t ex använder jag Prettier
+
+Snabbkommandor: CTRL+Shift+P
+
+Kom ihåg att endast uttryck är tillåtna i render-delen. Dvs du får inte använda if, loopar osv.
+
+Man kan blanda React och Javscript för dynamiska uppdateringar på vanligt sätt:
+  setTimeout(() => {
+    const h1 = document.getElementById('test');
+    h1.innerHTML = "Herro!";
+  }, 2000)
+
+Dock kan detta fucka med React's Virtual DOM som jämför riktiga DOM och då upptäcker att något inte stämmer och att hemsidan måste ritas om.
+-> Kan påverka prestanda negativt och eventuellt orsaka märkliga problem (t ex race conditions).
+
+!! I vanlig JavaScript kan man inte importera bilder på det här sättet: import reactImg from './assets/react-core-concepts.png'
+
+I react render-kod skiljer man statiska värden: "test" med dynamiska värden {test}
+
+Props - custom HTML attributes. 
+
+HTML5:
+<main> är delen i en hemsida där det primära innehåller är. T ex:
+<header>
+<nav>
+<main>
+<footer>
+-> Screen Readers använder <main> för att hoppa rakt till innehåller och SEO prioriterar detta innehåll under indexering.
+
+<section> är en tematisk gruppering, t ex ett kapitel i en bok - eller "våra produkter" - "om oss" osv.
+-> Kan också hjälpa SEO.
+
+Parametern för Props för Komponenter är ett enda props-objekt. Det är därför det defineras i {...}
+
+Man också sätta default-värden för props, t ex: export default function Button({ caption, type = "submit" }) { ... }
+
+Konvention är att ha alla komponenter i en "components"-mapp och sedan lägga alla komponenter i varsin mapp om de har 
+flera tillhörande filer.
+
+Css är inte scooped öht. CSS i en komponent kommer påverka komponenten ovanför i trädet.
+
+<menu> fungerar likt <ul> som en icke ordnad lista med <li>-föremål innuti.
+
+Alla React-komponenter har en särskilt prop som heter children som alltid skapas med komponenter.
+Children åsyftar alla objekt mellan <Komponent> (children) </Komponent>
+
+Component composition är när komponenter innehåller komponenter.
+
+Att användra children är ett alternativ till att använda attribut till komponenter när man ger dem innehåll.
+
+Funktion som hanterar event (onClick osv) brukar enligt konvention döpas till handleClick eller clickHandler osv.
+
+Om man gör <button onClick={handleClick}> så skickar man med en funktion, gör man däremot <button onClick={handleClick()}> 
+så aktiveras funktionen. Vill man skicka med parametrar kan man göra <button onClick={(param) => handleClick(param)}>
+
+ReactHooks - Alla funktioner som startar med ett "use", t ex "useState" är en "hook" (React Hooks)
+- dessa kan bara kallas innefrån React-komponenter eller andra hooks.
+
+[value, setValue] använder javascript "destructoring", vi använder en array och vi destructoring separerar värdena så de kan användas.
+Kallar man setValue så kommer React att kalla komponent-funktionen igen. Det är därför man kan ha "const [value, setValue]", value
+är bara ett värde, när komponenten kallas igen kommer "value" ha ett nytt värde.
+- När man kallar setFunktionen så här:
+
+  setCurrentState(newValue);
+  console.log(currentState);
+
+Så kommer man säga åt React att kalla komponenter på nytt när den kört klart all kod. Alltså kommer selectedButton vara det gamla värdet.
+
+React går att bygga utan JSX och utan att behöva bygga - genom javascript och att använda React som en bibliotek.
+
+T ex:
+<div id="content">
+  <p> Hello World </p>
+</div>
+
+kan bytas ut till:
+React.createElement(
+  'div', <-- komponenttyp
+  {id: 'content'}, <-- props objekt
+  React.createElement( <-- child objekt
+    'p', null, 'Hello World'
+  )
+);
+
+<> </> - Kallas för fragment-component, kan också benämnas <Fragment></Fragment>
