@@ -111,3 +111,6 @@ React.createElement(
 );
 
 <> </> - Kallas för fragment-component, kan också benämnas <Fragment></Fragment>
+
+Pga att en komponent (som är en funktion) körs på nytt vid varje tillstånds-förändring så kallas även alla dess barn-komponenter.
+Detta är ineffektivt och kan skapa oönskade renderings-resultat.
