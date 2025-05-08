@@ -29,6 +29,7 @@ function App() {
   }
 
   return (
+    <>
     <div>
       <Header />
       <main>
@@ -50,6 +51,7 @@ function App() {
         </section>
       </main>
     </div>
+    </>
   );
 }
 
