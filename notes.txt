@@ -114,3 +114,12 @@ React.createElement(
 
 Pga att en komponent (som är en funktion) körs på nytt vid varje tillstånds-förändring så kallas även alla dess barn-komponenter.
 Detta är ineffektivt och kan skapa oönskade renderings-resultat.
+
+Begrepp:
+- Forwarded Props: Saker som id och className förs inte vidare till React-komponenter, utan bara HTML-komponenter,
+    då kan man använda "forward props" eller "proxy props" via ...props på slutet i props destructoring.
+- Multiple Component Slots: Man kan också använda en Prop som en additionel childrens-struktur genom att använda fragment.
+- Element Identifiers as Props: När man använder html element som en sträng->prop och sedan exekverar som en komponent
+- Default Prop values: t ex ButtonsContainer = 'menu'
+
+Ibland vill man göra att vissa sektioner skall dela samma struktur (se Section.jsx)
