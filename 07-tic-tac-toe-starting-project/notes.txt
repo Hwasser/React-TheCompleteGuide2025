@@ -1,0 +1,16 @@
+Kom ihåg att statisk data kan placeras direkt i index.html!
+
+
+Det här är ett dåligt sätt att utföra det på:
+setIsEditing(!isEditing);
+I react bör man istället skicka en funktion som tar in det tidigare värdet,
+anledningen är att man garanterat får det senaste värdet.
+- I react så uppdateras inte tillstånd direkt, utan när react har tid för det.
+- Det blir rätt i de flesta fallen, men man kan få märkliga edge-cases.
+
+T ex: om isEditing = true
+setIsEditing(!isEditing);
+setIsEditing(!isEditing);
+-> kommer resultera i isEditing = false (istället för dubbel-negation som man kan förvänta sig)
+
+Two-Way-Binding: läser in värde -> användaren ändrar värde -> läser in värde. Dvs det går fram och tillbaka från användaren.
