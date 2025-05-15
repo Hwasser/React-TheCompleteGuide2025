@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function Player({ initialName, symbol, isActive }) {
+export default function Player({ initialName, symbol, isActive, onChangeName }) {
   const [playerName, setPlayerName] = useState(initialName);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -12,6 +12,10 @@ export default function Player({ initialName, symbol, isActive }) {
     // Det här är ett dåligt sätt att utföra det på, i react
     // bör man istället skicka en funktion.
     setIsEditing(prev => !prev);
+
+    if (isEditing) {
+      onChangeName(symbol, playerName);
+    }
   }
 
   function handleChange(event) {
