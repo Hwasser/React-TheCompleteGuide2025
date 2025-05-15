@@ -6,17 +6,28 @@ const initialGameBoard = [
     [null, null, null],
 ];
 
-export default function GameBoard({ onSelectSquare, activePlayerSymbol }) {
-	const [gameBoard, setGameBoard] = useState(initialGameBoard);
+export default function GameBoard({ onSelectSquare, turns }) {
+	// Problemet med denna approarch är att vi inte vill ha information om spel-data på flera ställen
 
-	function handleSelectSquare(rowIndex, colIndex) {
-		setGameBoard(prevBoard => {
-			const updatedBoard = [...prevBoard].map(innerArray => [...innerArray]); 
-			updatedBoard[rowIndex][colIndex] = activePlayerSymbol;
-			return updatedBoard
-		});
+	// const [gameBoard, setGameBoard] = useState(initialGameBoard);
 
-		onSelectSquare();
+	// function handleSelectSquare(rowIndex, colIndex) {
+	// 	setGameBoard(prevBoard => {
+	// 		const updatedBoard = [...prevBoard].map(innerArray => [...innerArray]); 
+	// 		updatedBoard[rowIndex][colIndex] = activePlayerSymbol;
+	// 		return updatedBoard
+	// 	});
+
+	// 	onSelectSquare();
+	// }
+
+	let gameBoard = initialGameBoard;
+
+	for (const turn of turns) { 
+		const { square, player } = turn;
+		const { row, col } = square;
+
+		gameBoard[row][col] = player;
 	}
 
   return (
@@ -26,7 +37,7 @@ export default function GameBoard({ onSelectSquare, activePlayerSymbol }) {
           <ol>
 						{row.map((playerSymbol, colIndex) => 
 							<li key={colIndex}>
-								<button onClick={() => handleSelectSquare(rowIndex, colIndex)}>{playerSymbol}</button>
+								<button onClick={() => onSelectSquare(rowIndex, colIndex)}>{playerSymbol}</button>
 							</li>
 						)}
 					</ol>
