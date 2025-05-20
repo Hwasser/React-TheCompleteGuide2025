@@ -23,3 +23,4 @@ Man behöver därför använda ännu mer spread via map:
 
 Lifting state up (core concept): Att lyfta upp ett tillstånd till den lägsta gemensamma föräldrarkomponenten
     och göra det nåbart till samtliga barnkomponenter.
+-> Inte svårare än så, man tar sedan in tillstånden eller funktionerna via props till barnen.
