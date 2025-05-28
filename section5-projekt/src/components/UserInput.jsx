@@ -1,47 +1,36 @@
 import React from 'react'
+import UserInputField from './UserInputField';
 
 export default function UserInput({ onUpdateValue, inputData }) {
   return (
     <form id="user-input">
       <div className="input-group">
-        <div>
-          <label>initial investment</label>
-          <input
-            value={inputData.initialInvestment}
-            id="initialInvestment"
-            type="number"
-            onChange={onUpdateValue}
-          />
-        </div>
-        <div>
-          <label>annual investment</label>
-          <input
-            value={inputData.annualInvestment}
-            id="annualInvestment"
-            type="number"
-            onChange={onUpdateValue}
-          />
-        </div>
+				<UserInputField 
+					onUpdateValue={onUpdateValue} 
+					inputData={inputData.initialInvestment} 
+					id="initialInvestment"
+					title="Initial Investment" 
+				/>
+				<UserInputField 
+					onUpdateValue={onUpdateValue} 
+					inputData={inputData.annualInvestment} 
+					id="annualInvestment"
+					title="Annual Investment" 
+				/>
       </div>
       <div className="input-group">
-        <div>
-          <label>expected return</label>
-          <input
-            value={inputData.expectedReturn}
-            id="expectedReturn"
-            type="number"
-            onChange={onUpdateValue}
-          />
-        </div>
-        <div>
-          <label>duration</label>
-          <input
-            value={inputData.duration}
-            id="duration"
-            type="number"
-            onChange={onUpdateValue}
-          />
-        </div>
+				<UserInputField 
+					onUpdateValue={onUpdateValue} 
+					inputData={inputData.expectedReturn} 
+					id="expectedReturn"
+					title="Expected Return" 
+				/>
+				<UserInputField 
+					onUpdateValue={onUpdateValue} 
+					inputData={inputData.duration} 
+					id="duration"
+					title="Duration" 
+				/>
       </div>
     </form>
   );
