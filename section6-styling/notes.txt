@@ -34,3 +34,19 @@ const ControlContainer = styled.div`
 
 Man använder en D "tagged templates" vilket är en mer avancerad form at template literals.
 obs: Props för taggad följer med komponenten
+-> Läraren visar att det går att göra dynamiska stylade komponenter genom att lägga in ${(props) => ...} i en tagged template,
+   however, nu måste man göra så här: color: ${({ $invalid }) => ($invalid ? '#f87171' : '#6b7280')};
+   $ före variabeln säger åt kompilatorn att inte forwarda proppen in i DOM-elementet.
+
+   "A transient prop (prefixed with $) is a prop that styled-components uses for styling logic but does not pass to the DOM. 
+   This prevents React from rendering it as an attribute, avoiding warnings like the one you’re seeing."
+
+Man kan även använda media queries och suedo selectors så som "hover" via stylade komponenter. (se Header.jsx)
+
+Styled Components
++ snabbt och enkelt att lägga till
++ kan använda i reakt-tänk
++ stilar är automatiskt scoopade
+- måste kunna css
+- förlorar separationen mellan React och CSS
+- slutar upp med massa små wrapper-komponenter
