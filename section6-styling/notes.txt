@@ -1,0 +1,36 @@
+Denna del går igenom:
+1. Styling with Vanilla CSS
+2. Scoping styles with CSS Modules
+3. CSS-in-JS styling with "Styled Components"
+4. Styling with Tailwind CSS
+5. Static & Dynamic styling
+
+1. Fungerar genom att man splittrar CSS och har en CSS-fil för varje komponent.
++ Fördelen med detta är att flera personer kan arbeta med styling samtidigt.
++ En annan fördel att man skriver vanlig CSS fil.
+- CSS är inte skoopat till komponenter. Dvs CSS relger krockar mellan komponenter.
+-> Alla CSS-filer inkluderas i HEAD-delen i index.html
+
+Fördelen med inline-stiler är att man skoopar stil till endast en tag, dock så blir detta
+bökigt om det skall göras med alla taggar. En annan nackdel är att man inte de-couplar CSS med JSX
+och UI och FrontEnd personer kan då inte arbeta samtidigt.
+
+2. Med CSS moduler kan man scoopa klassnamn lokalt.
+-> är inte default för CSS eller JavaScript.
+Hur det använts: 
+    i:   Döpa modulen till Namn.module.css 
+    ii:  Importera som "import namn from Namn.module.css"
+    iii: Hämta via <p className={namn.klass}> asd </p>
+
+3. Styled components package
+-> Definerar inte styling inline eller i css filer, utan i komponenter. Dvs då får tillbaka en stylad tag.
+
+const ControlContainer = styled.div`
+   display: flex;
+   flex-direction: column;
+   gap: 0.5rem;
+  margin-bottom: 1.5rem;
+`;
+
+Man använder en D "tagged templates" vilket är en mer avancerad form at template literals.
+obs: Props för taggad följer med komponenten
