@@ -1,0 +1,12 @@
+I developer mode i Chrome kan man gå till sources och där få syn på källkoden. 
+-> Där i så ser man nuvarande värden för variabler.
+-> Man kan även lägga till breakpoints på radnumret.
+
+StrictMode gör att varje komponents körs två gånger (i development mode).
+
+I fliken där sources finns så finns två react-flikar också. Profiler och Components.
+
+I Components kan man se hela komponent-trädet samt props för alla komponenter.
+(dvs nuvarande värde för alla props).
+
+Under Components->inställningar så kan man även välja tema (dark/light).
