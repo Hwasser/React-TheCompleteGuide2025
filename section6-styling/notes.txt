@@ -50,3 +50,9 @@ Styled Components
 - måste kunna css
 - förlorar separationen mellan React och CSS
 - slutar upp med massa små wrapper-komponenter
+
+För enkelhetens skull så körde jag tailwindcss in en codesandbox för att köra en legacy-version av tailwind.
+-> Bra att notera är att man kan bör till fonts i "tailwind.config.js"
+-> Responsive design sköts med "breakpoint prefix", t ex md:w-32 där md är samma som @media (min-width: 768px)
+
+- Nackdelen med tailwind är att man slutar upp med långa klasser på varje html-tag.
