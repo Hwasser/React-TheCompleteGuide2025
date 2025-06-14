@@ -1,0 +1,9 @@
+
+
+Använd alltid state för värden som påverkar UI, för värden
+som inte påverkar UI - använd variabler eller refs.
+
+Refs är en referens till en tag och samma tag koms ihåg även
+när vyn ritas om efter tillståndsförändring. Men även om man
+ändrar värdet till en tag i en ref så kommer man inte se förändringen
+om inte vyn ritas om.
