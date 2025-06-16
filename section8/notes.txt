@@ -1,4 +1,23 @@
+Refs & Portals: Advanced DOM Access & Value Management
+------------------------------------------------------
 
+En REF är en speciell typ av variabel som sköts av react - inte ett tillstånd då
+tillstånd uppdaterar renderingen.
+
+Ref är dessutom en inbyggd prop i taggar och komponenter. Man kopplar en komponent
+med en ref genom att skriva:
+    const playerName = useRef();
+    ...
+    <input ref={playerName} />
+
+En ref är ett objekt som bara har en property = current.
+
+En ref är en handle, en "opaque data type"
+
+    (opaque data type is a data type whose concrete data structure is not defined in an interface. This enforces information 
+    hiding, since its values can only be manipulated by calling subroutines that have access to the missing information)
+
+enteredPlayerName ?? 'uknown entity' -> om enteredPlayerName inte finns, kör ett fallback value
 
 Använd alltid state för värden som påverkar UI, för värden
 som inte påverkar UI - använd variabler eller refs.
