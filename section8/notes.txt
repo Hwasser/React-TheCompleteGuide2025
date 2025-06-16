@@ -4,7 +4,7 @@ Refs & Portals: Advanced DOM Access & Value Management
 En REF är en speciell typ av variabel som sköts av react - inte ett tillstånd då
 tillstånd uppdaterar renderingen.
 
-Ref är dessutom en inbyggd prop i taggar och komponenter. Man kopplar en komponent
+Ref är dessutom en inbyggd prop i taggar. Man kopplar en komponent
 med en ref genom att skriva:
     const playerName = useRef();
     ...
@@ -26,3 +26,30 @@ Refs är en referens till en tag och samma tag koms ihåg även
 när vyn ritas om efter tillståndsförändring. Men även om man
 ändrar värdet till en tag i en ref så kommer man inte se förändringen
 om inte vyn ritas om.
+
+Obs, custom components kan inte refereras till.
+I React >= v19 så kan man dock passa vidare en ref till en custom component och använda den inne i komponenten.
+I React < 19 så måste man använda en funktion (som man importerar) som heter forwardRef,
+  man wrappar hela komponent-funktionen i den på följande sätt:
+  const ResultComponent = forwardRef(function CustomComponent({ props }, ref) { ... })
+
+----------------------
+Dialog:
+
+Det finns en html tag som heter Dialog. Den har bland annat ett attribute som heter open,
+om open=true (via t ex <dialog open>) så kommer innehåller innanför taggarna att synas.
+-> Kan vara modal (blockerar saker i bakgrunden och gör att fokus läggs på dialogen) eller icke-modal.
+-> Om modal öppnas den med showModal(), annars med show(). 
+-> open() används endast om den skall vara öppen när sidan startas. Open är inte en metod, utan endast ett attribut.
+
+Man kan stänga en dialog utan javascript genom att använda en form med metoden "dialog":
+    <form method="dialog">
+        <button>Close</button>
+    </form>
+
+Man kan använda CSS pseudo-elementet "backdrop" för att lägga en bakgrund under dialogen, via tex:
+    dialog::backdrop {
+        background-color: salmon;
+    }
+----------------------
+
