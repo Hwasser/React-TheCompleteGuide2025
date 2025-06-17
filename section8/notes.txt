@@ -53,3 +53,9 @@ Man kan använda CSS pseudo-elementet "backdrop" för att lägga en bakgrund und
     }
 ----------------------
 
+En bra idé är att bygga en komponent så att propsen sköts via react-logik snarare än att matas in i taggar direkt,
+särskilt när det gäller metoder på taggar (t ex showModal()).
+-> Detta eftersom att andra i projektet inte skall behöva gräva ner sig i alla komponenter och så att framtida
+   förändringar inte förstår kod som kallar komponenterna.
+-> Precis som man kan förstå av ovan så kan useImperativeHandle användas som ett API interface.
+-> Man kan använda "useImperativeHandle" för när en parent vill kalla metoder på dess childs.

@@ -13,7 +13,10 @@ export default function TimerChallenge({ title, targetTime }) {
     setTimerStarted(true);
     timer.current = setTimeout(() => { 
       setTimerExpired(true) 
-      dialog.current.showModal();
+      // dialog.current.showModal(); - tidigare lösning. Men vi har en custom open-metod istället
+      // för att man inte skall vara beroende av att kalla metoder direkt i source coden
+      // -> Bättre de-coupling mellan komponenter.
+      dialog.current.open();
     }, targetTime * 1000);
   }
 
