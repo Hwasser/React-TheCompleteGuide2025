@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState } from 'react';
 import ResultModal from './ResultModal';
 
 export default function TimerChallenge({ title, targetTime }) {

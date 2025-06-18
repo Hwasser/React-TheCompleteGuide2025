@@ -59,3 +59,13 @@ särskilt när det gäller metoder på taggar (t ex showModal()).
    förändringar inte förstår kod som kallar komponenterna.
 -> Precis som man kan förstå av ovan så kan useImperativeHandle användas som ett API interface.
 -> Man kan använda "useImperativeHandle" för när en parent vill kalla metoder på dess childs.
+
+----------------------
+
+Portaler: Vi kan se t ex hur vår <dialog> är nestad långt in i andra element. Men det vore mer logiskt ifall 
+<dialog> sitter högre upp i trädet - eftersom att en pop-up-vy är en del av den yttersta kroppen snarare än en
+del av ResultModal-delen (även fast den deklareras där). Bland annat blir accessability sämre eftersom att andra
+element kan lägga sig ovanpå om man går in i utvecklar-vyn.
+
+Portal-delen är en del av 'react-dom' som är React specifikt för webben - eller DOM-manipulering.
+Det vanliga 'react'-biblioteket är för alla typer av komponenter, inkl Native-komponenter.
