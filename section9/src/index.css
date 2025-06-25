@@ -5,3 +5,7 @@
 #sidebar {
     height: calc(100vh - 2rem);
 }
+
+#project-view {
+    width: 600px;
+}

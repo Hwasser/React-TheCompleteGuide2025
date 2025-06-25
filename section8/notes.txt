@@ -59,6 +59,7 @@ särskilt när det gäller metoder på taggar (t ex showModal()).
    förändringar inte förstår kod som kallar komponenterna.
 -> Precis som man kan förstå av ovan så kan useImperativeHandle användas som ett API interface.
 -> Man kan använda "useImperativeHandle" för när en parent vill kalla metoder på dess childs.
+-> Används för att göra saker med lously coupled
 
 ----------------------
 
