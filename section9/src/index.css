@@ -6,6 +6,6 @@
     height: calc(100vh - 2rem);
 }
 
-#project-view {
+main {
     width: 600px;
 }

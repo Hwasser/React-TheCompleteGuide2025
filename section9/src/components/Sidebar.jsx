@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Sidebar({ projects, selectedProject, onAddProject, onSelectProject }) {
+export default function Sidebar({ projects, selectedProject, onCreateProject, onSelectProject }) {
   const selectedClass = 'p-2 text-white bg-zinc-800 hover:bg-zinc-700 transition duration-100';
   const nonSelectedClass = 'p-2 text-zinc-300 hover:bg-zinc-900 transition duration-100';
 
@@ -9,7 +9,7 @@ export default function Sidebar({ projects, selectedProject, onAddProject, onSel
         <h2 className='text-white text-2xl font-semibold mb-8'>YOUR PROJECTS</h2>
         <button 
           className='text-white text-base bg-zinc-700 p-2 rounded-md hover:bg-zinc-600 transition duration-100'
-          onClick={onAddProject}
+          onClick={onCreateProject}
         >
             <p className='text-zinc-400'>+ Add Project</p>
         </button>
