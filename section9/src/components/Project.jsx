@@ -1,6 +1,6 @@
 import Tasks from "./Tasks";
 
-export default function Project({ selectedProject, onEditTasks }) {
+export default function Project({ selectedProject, onEditTasks, onDeleteProject }) {
   const { title, dueDate, createdDate, description, startTasks } = selectedProject;
 
   function handleEditTasks(data) {
@@ -13,7 +13,10 @@ export default function Project({ selectedProject, onEditTasks }) {
       <section className='w-full mb-4'>
         <div className='flex justify-between w-full'>
           <h1 className='text-4xl font-bold mb-4 text-zinc-800'>{title}</h1>
-          <button className='font-semibold hover:text-red-500 transition duration-100'>Delete</button>
+          <button 
+            className='font-semibold hover:text-red-500 transition duration-100'
+            onClick={() => onDeleteProject(selectedProject.id)}
+          >Delete</button>
         </div>
         <p className='text-zinc-500 mb-4'>Created: {createdDate}</p>
         <pre className='mb-4'>{description}</pre>

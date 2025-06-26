@@ -4,6 +4,11 @@ export default function Sidebar({ projects, selectedProject, onCreateProject, on
   const selectedClass = 'p-2 text-white bg-zinc-800 hover:bg-zinc-700 transition duration-100';
   const nonSelectedClass = 'p-2 text-zinc-300 hover:bg-zinc-900 transition duration-100';
 
+  let currentSelectedId = -1;
+  if (selectedProject && selectedProject.id) {
+    currentSelectedId = selectedProject.id;
+  }
+
   return (
     <nav className='bg-black rounded-tr-xl mt-8 mr-8 p-8 h-full' id='sidebar' >
         <h2 className='text-white text-2xl font-semibold mb-8'>YOUR PROJECTS</h2>
@@ -16,7 +21,7 @@ export default function Sidebar({ projects, selectedProject, onCreateProject, on
         <ul className='mt-8'>
             { projects && projects.map((project) => 
               <li key={project.title + project.id}>
-                <button className={(project.id === selectedProject.id) ? selectedClass : nonSelectedClass } onClick={() => onSelectProject(project.id)} >
+                <button className={(project.id === currentSelectedId) ? selectedClass : nonSelectedClass } onClick={() => onSelectProject(project.id)} >
                   {project.title}
                 </button>
               </li>

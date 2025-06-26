@@ -27,6 +27,7 @@ function App() {
 
     setProjects(prev => {
       const newProjectsList = [...projects];
+
       const newProject = {...emptyProject};
 
       newProject.createdDate = formatedDateString;
@@ -39,6 +40,18 @@ function App() {
       setCreatingProject(false)
 
       newProjectsList.push(newProject);
+      return newProjectsList;
+    })
+  }
+
+  function handleDeleteProject(id) {
+    setProjects(prev => {
+      const newProjectsList = [...projects].filter(project => project.id !== id);
+
+      if (selectedProject.id === id) {
+        setSelectedProject(null);
+      }
+
       return newProjectsList;
     })
   }
@@ -74,7 +87,9 @@ function App() {
           {
             (creatingProject)
               ? <CreateProject onCloseProject={closeCreateProjectView} onAddProject={handleAddProject} />
-              : selectedProject ? <Project selectedProject={selectedProject} onEditTasks={handleEditTasks} /> : <NoProject onCreateProject={openCreateProjectView} />
+              : selectedProject 
+                ? <Project selectedProject={selectedProject} onEditTasks={handleEditTasks} onDeleteProject={handleDeleteProject} /> 
+                : <NoProject onCreateProject={openCreateProjectView} />
           }
         </main>
       </div>

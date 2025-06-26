@@ -5,6 +5,27 @@ export default function CreateProject({ onCloseProject, onAddProject }) {
   const descriptionInput = useRef('');
   const dueDateInput = useRef('');
 
+  function handleAddProject() {
+    // Title and description need to be 3 characters or more
+    if (titleInput.current.value.length < 3 && descriptionInput.current.value.length < 3) {
+      return;
+    }
+
+    // Check if duedate is choosen
+    if (!dueDateInput.current.value) {
+      return;
+    }
+
+    // Check whether due date is before current date
+    const dueDateTime = new Date().getTime(dueDateInput.current.value);
+    const currentTime = new Date().getTime();
+    if (dueDateTime < currentTime) {
+      return;
+    }    
+
+    onAddProject(titleInput.current.value, descriptionInput.current.value, dueDateInput.current.value);
+  }
+
   return (
     <>
       <div className='flex justify-end mb-8 gap-2'>
@@ -14,7 +35,7 @@ export default function CreateProject({ onCloseProject, onAddProject }) {
         >Cancel</button>
         <button 
           className='text-lg font-semibold text-white bg-black py-1 px-4 rounded-md hover:bg-zinc-800 transition duration-100'
-          onClick={() => onAddProject(titleInput.current.value, descriptionInput.current.value, dueDateInput.current.value)}
+          onClick={handleAddProject}
         >Save</button>
       </div>
       
