@@ -20,9 +20,12 @@ function App() {
   const projectIdCounter = useRef(0);
 
   function handleAddProject(title, description, dueDate) {
+    // Get formated created date
     const currentDate = new Date();
     const dateStrings = currentDate.toDateString().split(" ");
     const formatedDateString = `${dateStrings[1]} ${dateStrings[2]}, ${dateStrings[3]}`  
+
+    // Get project ID and increase ID counter
     const currentProjectId = projectIdCounter.current++;
 
     setProjects(prev => {
@@ -81,7 +84,7 @@ function App() {
 
   return (
     <>
-      <div className="flex h-screen my-8">
+      <div className="flex mt-8" id="app-view">
         <Sidebar projects={projects} selectedProject={selectedProject} onCreateProject={openCreateProjectView} onSelectProject={handleSelectProject} />
         <main className="mt-16">
           {
