@@ -81,9 +81,9 @@ function App() {
 
   return (
     <>
-      <div className="flex">
+      <div className="flex h-screen my-8">
         <Sidebar projects={projects} selectedProject={selectedProject} onCreateProject={openCreateProjectView} onSelectProject={handleSelectProject} />
-        <main className="mt-24">
+        <main className="mt-16">
           {
             (creatingProject)
               ? <CreateProject onCloseProject={closeCreateProjectView} onAddProject={handleAddProject} />

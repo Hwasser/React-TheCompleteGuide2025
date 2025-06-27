@@ -1,2 +1,4 @@
 Section 9: Practice project: Project management app
 ---------------------------------------------------
+
+Den finns en HTML-tag specifikt för sidebars och liknande som heter <aside>

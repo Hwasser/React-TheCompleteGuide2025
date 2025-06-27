@@ -10,7 +10,7 @@ export default function Sidebar({ projects, selectedProject, onCreateProject, on
   }
 
   return (
-    <nav className='bg-black rounded-tr-xl mt-8 mr-8 p-8 h-full' id='sidebar' >
+    <aside className='bg-black rounded-tr-xl mr-8 p-8 w-1/3 md:w-72' id='sidebar' >
         <h2 className='text-white text-2xl font-semibold mb-8'>YOUR PROJECTS</h2>
         <button 
           className='text-white text-base bg-zinc-700 p-2 rounded-md hover:bg-zinc-600 transition duration-100'
@@ -27,6 +27,6 @@ export default function Sidebar({ projects, selectedProject, onCreateProject, on
               </li>
             ) }
         </ul>
-    </nav>
+    </aside>
   )
 }
