@@ -1,19 +1,23 @@
 import React, { useRef } from 'react'
 import Input from './Input';
+import Modal from './Modal';
 
 export default function CreateProject({ onCloseProject, onAddProject }) {
   const titleInput = useRef('');
   const descriptionInput = useRef('');
   const dueDateInput = useRef('');
+  const modalRef = useRef();
 
   function handleAddProject() {
     // Title and description need to be 3 characters or more
     if (titleInput.current.value.length < 3 && descriptionInput.current.value.length < 3) {
+      modalRef.current.open();
       return;
     }
 
     // Check if duedate is choosen
     if (!dueDateInput.current.value) {
+      modalRef.current.open();
       return;
     }
 
@@ -21,6 +25,7 @@ export default function CreateProject({ onCloseProject, onAddProject }) {
     const dueDateTime = new Date().getTime(dueDateInput.current.value);
     const currentTime = new Date().getTime();
     if (dueDateTime < currentTime) {
+      modalRef.current.open();
       return;
     }    
 
@@ -29,6 +34,11 @@ export default function CreateProject({ onCloseProject, onAddProject }) {
 
   return (
     <>
+      <Modal ref={modalRef}>
+        <h2 className='text-xl font-bold text-zinc-500 my-4'>Invalid Input</h2>
+        <p className='text-zinc-600 mb-4'>Title and description should at least be 3 characters long and due date cannot be before the current day!</p>
+        <p className='text-zinc-600 mb-4'>Please provide a valid input!</p>
+      </Modal>
       <div className='w-[35rem]'>
         <menu className="flex justify-end mb-8 gap-2">
           <li>
