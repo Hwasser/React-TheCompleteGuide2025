@@ -33,7 +33,7 @@ export default function Project({ selectedProject, onEditTasks, onDeleteProject 
           >Delete</button>
         </div>
         <p className='text-zinc-500 mb-4'>{formattedDueDate}</p>
-        <pre className='mb-4'>{description}</pre>
+        <p className='mb-4 text-zinc-600 whitespace-pre-wrap'>{description}</p>
         <hr />
       </section>
       <Tasks startTasks={startTasks} onEditTasks={handleEditTasks} />
