@@ -6,7 +6,6 @@ import CreateProject from "./components/CreateProject";
 
 const emptyProject = {
   title: "Untitled",
-  createdDate: "",
   description: "",
   dueDate: "",
   tasks: [],
@@ -20,11 +19,6 @@ function App() {
   const projectIdCounter = useRef(0);
 
   function handleAddProject(title, description, dueDate) {
-    // Get formated created date
-    const currentDate = new Date();
-    const dateStrings = currentDate.toDateString().split(" ");
-    const formatedDateString = `${dateStrings[1]} ${dateStrings[2]}, ${dateStrings[3]}`  
-
     // Get project ID and increase ID counter
     const currentProjectId = projectIdCounter.current++;
 
@@ -33,7 +27,6 @@ function App() {
 
       const newProject = {...emptyProject};
 
-      newProject.createdDate = formatedDateString;
       newProject.title = title;
       newProject.description = description;
       newProject.dueDate = dueDate;

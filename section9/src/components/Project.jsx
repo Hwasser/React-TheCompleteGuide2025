@@ -3,9 +3,15 @@ import Tasks from "./Tasks";
 import DeleteMessage from "./DeleteMessage";
 
 export default function Project({ selectedProject, onEditTasks, onDeleteProject }) {
-  const { title, dueDate, createdDate, description, startTasks } = selectedProject;
-
   const deleteDialog = useRef();
+  
+  const { title, dueDate, description, startTasks } = selectedProject;
+
+  const formattedDueDate = new Date(dueDate).toLocaleDateString('en-us', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  });
 
   function handleEditTasks(data) {
     onEditTasks(data);
@@ -26,9 +32,8 @@ export default function Project({ selectedProject, onEditTasks, onDeleteProject 
             onClick={handleDeleteDialog}
           >Delete</button>
         </div>
-        <p className='text-zinc-500 mb-4'>Created: {createdDate}</p>
+        <p className='text-zinc-500 mb-4'>{formattedDueDate}</p>
         <pre className='mb-4'>{description}</pre>
-        <p className='text-lg font-semibold text-zinc-600 mb-4'>Due Date: {dueDate}</p>
         <hr />
       </section>
       <Tasks startTasks={startTasks} onEditTasks={handleEditTasks} />
