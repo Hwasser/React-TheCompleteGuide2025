@@ -1,0 +1,5 @@
+Section 9: Advanced State Management - Context API and useReducer
+---------------------------------------------------
+
+Ett sätt att undvika prop drilling (vilket är när en prop måste följa med flera lager ner). 
+T ex i Bogfelts-sidan så används prop-drilling för språk-val. 
