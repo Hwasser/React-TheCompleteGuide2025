@@ -3,3 +3,7 @@ Section 9: Advanced State Management - Context API and useReducer
 
 Ett sätt att undvika prop drilling (vilket är när en prop måste följa med flera lager ner). 
 T ex i Bogfelts-sidan så används prop-drilling för språk-val. 
+
+Component Composition: En metod för att lösa prop-drilling. Helt enkelt att du sätter ihop data och logik 
+från två komponenter. T ex genom att slå ihop dem eller att t ex ta ut logiken och sätta in den via en
+children prop.
