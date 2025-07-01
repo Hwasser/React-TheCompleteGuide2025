@@ -41,3 +41,8 @@ Så alla operationer på datan kan man också lägga in i Context i ett javascri
          return (hela komponenten som skall använda cartCtx) 
       } }
    </CartContext>
+
+!! När Context ändras så ritas konsumenten om, precis som när ett state ändras.
+
+En bra idé är att använda en arkitektur där man skapar en context-komponent och flyttar
+global state och all dess logik dit.
