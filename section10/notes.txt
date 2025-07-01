@@ -7,3 +7,37 @@ T ex i Bogfelts-sidan så används prop-drilling för språk-val.
 Component Composition: En metod för att lösa prop-drilling. Helt enkelt att du sätter ihop data och logik 
 från två komponenter. T ex genom att slå ihop dem eller att t ex ta ut logiken och sätta in den via en
 children prop.
+
+React's Context API: Delar data mellan komponenter.
+-> En konvention är att lägga all data i en mapp som heter "store"
+
+I versioner nyare är 19 kan man wrappa alla komponenter som skall använda en Context med t ex:
+<CartContext> .. komponenter .. </CartContext>
+I äldre versioner: <CartContext.Provider> .. komponenter .. </CartContext.Provider>
+
+Så Provider är en property av CartContext som innehåller en komponent.
+
+Hooken "useContext" används för att kunna konsumera Context.
+-> Man använder den genom att kalla useContext(CartContext) och placera i ett värde.
+(endast i react version >= 19):
+-> Man kan också bara använda use(CartContext);
+-> Varför två hooks? use och useContext? use kan också användas inom ett if-block, vilket inte
+   går med en useContext-hook.
+
+!! Man behöver också ett default värde: <CartContext.Provider value={{ items: [] }}>
+-> Man kan länka ett state till context genom att använda ett state som default value.
+
+Egentligen kan man bara ha en tom contex i sin createContext, t ex createContext({}) och stoppa
+in dessa i default value senare - !! - men då får man ingen auto-completion.
+
+Det är inte bara att man kan använda Context till data, man kan använda det till funktioner. 
+Så alla operationer på datan kan man också lägga in i Context i ett javascript-object.
+
+! Det finns ett annat sätt att konsumera Context än useContext (dock rekommenderas detta).
+-> Det finns ett objekt som är fäst i ett Context objekt som heter Consumer.
+-> Man kan wrappa kompontenter som skall konsumera i en 
+   <CartContext.Consumer> 
+      {(cartCtx) => {
+         return (hela komponenten som skall använda cartCtx) 
+      } }
+   </CartContext>
