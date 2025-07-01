@@ -45,4 +45,10 @@ Så alla operationer på datan kan man också lägga in i Context i ett javascri
 !! När Context ändras så ritas konsumenten om, precis som när ett state ändras.
 
 En bra idé är att använda en arkitektur där man skapar en context-komponent och flyttar
-global state och all dess logik dit.
+global state och all dess logik dit.¨
+
+------------------------------
+
+En "Reducer" är alltså en "reduce"-funktion som i map-reduce. T ex [5, 10, 100] => 115
+En "reduce" funktion är som en "fold"-funktion i Haskell med skillnad att en "fold" har ett startvärde
+medan en reducer tar första värdet som ett startvärde.
