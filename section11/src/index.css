@@ -186,6 +186,10 @@ header p {
   color: #5d0909;
 }
 
+.button-text:hover {
+  cursor: pointer;
+}
+
 .modal::backdrop {
   position: fixed;
   top: 0;

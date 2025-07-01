@@ -5,19 +5,57 @@ import { AVAILABLE_PLACES } from './data.js';
 import Modal from './components/Modal.jsx';
 import DeleteConfirmation from './components/DeleteConfirmation.jsx';
 import logoImg from './assets/logo.png';
+import { sortPlacesByDistance } from './loc.js';
+import { useEffect } from 'react';
+
+// Detta körs synkront och behöver därför inte använda useEffect
+// Kan du ut den ur komponenten då den inte behöver köras varje gång vi renderar
+const storedIds = JSON.parse(localStorage.getItem('selectedPlaces')) || [];
+const storedPlaces = storedIds.map(id => 
+  AVAILABLE_PLACES.find((place) => place.id === id)
+);
 
 function App() {
-  const modal = useRef();
   const selectedPlace = useRef();
-  const [pickedPlaces, setPickedPlaces] = useState([]);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [pickedPlaces, setPickedPlaces] = useState(storedPlaces);
+  const [availablePlaces, setAvailablePlaces] = useState([]);
 
+    
+    
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const sortedPlaces = sortPlacesByDistance(
+        AVAILABLE_PLACES,
+        position.coords.latitude,
+        position.coords.longitude
+      );
+
+      setAvailablePlaces(sortedPlaces);
+    });
+  }, []); 
+
+  // // tar emot en funktion eftersom att det kan ta ett par ms innan positionen hämtats
+  // navigator.geolocation.getCurrentPosition((position) => {
+  //   sortPlacesByDistance(
+  //     AVAILABLE_PLACES,
+  //     position.coords.latitude,
+  //     position.coords.longitude
+  //   );
+
+  //   // Här har vi ett problem, vi kommer få den här datan efter React renderat
+  //   // Skulle vi köra useState så skulle vi uppdatera i en oändlig loop:
+  //   //    setAvailablePlaces(sortedPlaces)
+  // });
+  
   function handleStartRemovePlace(id) {
-    modal.current.open();
+    setModalIsOpen(true);
     selectedPlace.current = id;
   }
 
   function handleStopRemovePlace() {
-    modal.current.close();
+    setModalIsOpen(false);
   }
 
   function handleSelectPlace(id) {
@@ -28,18 +66,34 @@ function App() {
       const place = AVAILABLE_PLACES.find((place) => place.id === id);
       return [place, ...prevPickedPlaces];
     });
+
+    // Spara data lokalt som sträng
+    // EXEMPEL PÅ SID-EFFEKT SOM INTE BÖR ANVÄNDA useEffect
+    const storedIds = JSON.parse(localStorage.getItem('selectedPlaces')) || []; // hämta array eller tom array
+    if (storedIds.indexOf(id) === -1) {
+      localStorage.setItem(
+        "selectedPlaces", 
+        JSON.stringify([id, ...storedIds])
+      );
+    }
   }
 
   function handleRemovePlace() {
     setPickedPlaces((prevPickedPlaces) =>
       prevPickedPlaces.filter((place) => place.id !== selectedPlace.current)
     );
-    modal.current.close();
+
+    setModalIsOpen(false);
+
+    const storedIds = JSON.parse(localStorage.getItem('selectedPlaces')) || [];
+    localStorage.setItem('selectedPlaces', JSON.stringify(storedIds.filter((id) => 
+      id !== selectedPlace.current))
+    );
   }
 
   return (
     <>
-      <Modal ref={modal}>
+      <Modal open={modalIsOpen} onClose={handleStopRemovePlace}> 
         <DeleteConfirmation
           onCancel={handleStopRemovePlace}
           onConfirm={handleRemovePlace}
@@ -63,7 +117,8 @@ function App() {
         />
         <Places
           title="Available Places"
-          places={AVAILABLE_PLACES}
+          places={availablePlaces}
+          fallbackText="Sorting places by distance..."
           onSelectPlace={handleSelectPlace}
         />
       </main>

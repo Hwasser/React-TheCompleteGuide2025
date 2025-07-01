@@ -1,0 +1,26 @@
+Section 9: Handling Side Effects and Working with the useEffect() Hook
+----------------------------------------------------------------------
+
+Ny CSS grej:
+    filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.4));
+Kan användas istället för box-shadow för bilder.
+    class-name:nth-child(even) html-tag:hover
+Kan processera varje jämnt ävent när det hovras över
+
+navigator är ett js-objekt som innehåller användarens position.
+
+----------------------------------------------------------------------
+
+Sideffekter är generellt effekter som sker utanför en funktion.
+Men i React-lingo är sideffekter funktionalitet som inte
+påverkar komponenterns renderingscykel. Dvs påverkar inte tillstånd.
+
+Ett problem med sideffekter är att man kan nå en oändlig loop.
+
+När man kör en useEffect-hook:
+    useEffect( () => { ... }, [])
+så kommer den exkvera först efter att komponenten har renderat klart.
+Om dependency-array är tom som här så kommer den bara köras en gång oavsett
+hur många gånger komponenter renderar (om den inte tas bort och läggs tillbaka).
+
+Finns bra exempel i projektet på hur laddningsskärm kan användas med useEffect.
