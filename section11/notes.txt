@@ -9,6 +9,9 @@ Kan processera varje jämnt ävent när det hovras över
 
 navigator är ett js-objekt som innehåller användarens position.
 
+Det finns en html-tag som heter <progress /> som lägger till en
+progress-bar.
+
 ----------------------------------------------------------------------
 
 Sideffekter är generellt effekter som sker utanför en funktion.
@@ -24,3 +27,25 @@ Om dependency-array är tom som här så kommer den bara köras en gång oavsett
 hur många gånger komponenter renderar (om den inte tas bort och läggs tillbaka).
 
 Finns bra exempel i projektet på hur laddningsskärm kan användas med useEffect.
+
+Alla sideffekter behöver inte ligga i useEffect. Tvärt om vill man inte använda det
+när man inte behöver.
+
+useEffect har en cleanup-function som kan användas t ex för timers, man använder den
+genom att köra en return i slutet av useEffect.
+-> Return körs när useEffect kallas igen, eller när komponenten unmountar/tas bort
+-> En komponent unmountas när den försvinner ur vyn, t ex med {expression && Component}
+
+En konvenstion är att lägga till alla states och propes som används inom useEffect 
+som dependencies. 
+-> Dock när man lägger in funktioner som dependencies kan de resultera i en oändlig loop
+   Kom ihåg att funktioner i javascript är objekt. Så varje gång du renderar om en komponent
+   så skapas ett nytt funktions-objekt. Så varje gång en komponent renderas om så kommer 
+   en funktion få ett nytt värde och trigga en dependency-change.
+-> För att undvika detta kan man använda en useCallback-hook.
+
+Callback är en hook där man kopplar en funktion till ett värde och en dependency-array.
+Funktionen i callback kommer inte byggas om varje gång komponenten renderar, utan består.
+Man lagrar funktionen i minnet och återanvänder funktionen ur minner när man kallar callbacken igen.
+-> Som konvention, använd alltid callbacks om du skall använda funktioner i en depencency-array.
+-> useCallback depencency-array fungerar precis som en useEffect depencency-array.
