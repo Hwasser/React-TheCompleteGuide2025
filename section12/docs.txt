@@ -1,0 +1,3 @@
+När du arbetar med React vill de helst reducera andelen states så mycket som möjligt.
+
+CSS: Kom ihåg att du inte behöver koda att få stor bokstav, använd "text-transform"
