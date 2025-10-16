@@ -1,3 +1,21 @@
 När du arbetar med React vill de helst reducera andelen states så mycket som möjligt.
 
 CSS: Kom ihåg att du inte behöver koda att få stor bokstav, använd "text-transform"
+
+Man kan använda key-prop som ett trick för att tvingra om-rendering av en komponent.
+
+Kom ihåg att variabler som skall vara bestående vid rendering - men vars värde inte
+skall leda till omrendering - kan använda useRef istället.
+
+Kom ihåg att minimera antal useState och useEffect!
+
+OBS: ENUMS finns inte i JavaScript. Man kan uppnå samma funkionalitet genom att göra ett Object literal och sätta 
+Object.freeze vilket ger ett låst objekt som  inte går att ändra på eller extenda.
+
+Basically const Colors = Object.freeze({
+  RED: 'red',
+  BLUE: 'blue',
+  GREEN: 'green'
+});
+
+Dock så finns typen "enum" i TypeScript.
